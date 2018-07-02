@@ -1,0 +1,42 @@
+﻿@using ArtsCenterEventCalendar.Models
+@model IEnumerable<ArtsCenterEventCalendar.Models.Venue>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Denver Area Venues</h2>
+
+@if (!Model.Any())
+{
+    <p>List of Venues coming soon!</p>
+}
+else
+{
+    <table class="table table-hover table-responsive-lg table-striped table-dark">
+        <thead>
+        <tr>
+            <th scope="col">Venue</th>
+            <td scope="col">Number of Seats</td>
+            <th scope="col">Address</th>
+            <th scope="col">City</th>
+            <th scope="col">State</th>
+            <th scope="col">Zip</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var venue in Model)
+        {
+            <tr class="table-active">
+                
+                <td>@venue.Name</td>
+                <td>@venue.NumberOfSeats</td>
+                <td>@venue.Address.StreetAddress</td>
+                <td>@venue.Address.City</td>
+                <td>@venue.Address.State</td>
+                <td>@venue.Address.ZipCode</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

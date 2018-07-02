@@ -1,0 +1,51 @@
+﻿@using System.Activities.Statements
+@using ArtsCenterEventCalendar.Models
+@model dynamic
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Denver Area Performances</h1>
+
+
+<table class="table table-hover table-responsive-lg table-striped table-dark">
+    <thead>
+    <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Time</th>
+        <th scope="col">Performer</th>
+        <th scope="col">Performance Type</th>
+        @* <td scope="col">Genre</td> *@
+        <th scope="col">Venue</th>
+        <th scope="col">Location</th>
+        <th scope="col">Ticket Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var performance in Model)
+    {
+        <tr class="table-active">
+            <td>
+                <div class="date">
+                    <a href="#" class="date-btn">
+                        <span class="binds"></span>
+                        <span class="month">
+                            @Convert.ToDateTime(performance.EventDateTime).ToString("MMM")
+                        </span>
+                        <h2 class="day">@Convert.ToDateTime(performance.EventDateTime).ToString("dd")</h2>
+                    </a>
+                </div>
+            </td>
+            <td>@performance.EventDateTime.ToShortTimeString()</td>
+            <td>@performance.Performer.Name</td>
+            <td>@performance.Performer.PerformerType.Name</td>
+            @* <td>Genre will go here</td> *@
+            <td>@performance.Venue.Name</td>
+            <td>@performance.Venue.Address.City, 
+                @performance.Venue.Address.State</td>
+            <td>$@performance.Price</td>
+        </tr>
+    }
+    </tbody>
+</table>

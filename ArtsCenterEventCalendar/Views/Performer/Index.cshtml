@@ -1,0 +1,37 @@
+﻿@using ArtsCenterEventCalendar.Models
+@model IEnumerable<ArtsCenterEventCalendar.Models.Performer>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Perormers coming to Denver!</h2>
+
+@if (!Model.Any())
+{
+    <p>List of performers coming soon!</p>
+}
+else
+{
+    <table class="table table-hover table-responsive-lg table-striped table-dark">
+        <thead>
+        <tr>
+            <th scope="col">Performer</th>
+            <th scope="col">performer Type</th>
+            @* <th scope="col">Genre</th> *@
+            <th scope="col">Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var performer in Model)
+        {
+            <tr class="table-active">
+                <td>@performer.Name</td>
+                <td>@performer.PerformerType.Name</td>
+                @* <td>@performer.</td> *@
+                <td>@performer.Description</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
