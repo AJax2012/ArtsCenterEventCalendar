@@ -269,7 +269,7 @@
     <Compile Include="Services\PerformerService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\PerformerViewModel.cs" />
-    <Compile Include="ViewModels\PerformanceViewModel.cs" />
+    <Compile Include="ViewModels\PerformanceFormViewModel.cs" />
     <Compile Include="ViewModels\VenueViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -376,6 +376,7 @@
     <Content Include="Views\Performance\Index.cshtml" />
     <Content Include="Views\Performer\Index.cshtml" />
     <Content Include="Views\Venue\Index.cshtml" />
+    <Content Include="Views\Performance\PerformanceForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

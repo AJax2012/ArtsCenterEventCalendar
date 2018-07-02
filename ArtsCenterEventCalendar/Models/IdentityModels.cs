@@ -26,7 +26,7 @@ namespace ArtsCenterEventCalendar.Models
         public virtual DbSet<Performance> Performances { get; set; }
         public virtual DbSet<Genre> Genres { get; set; }
         public virtual DbSet<Musician> Musicians { get; set; }
-        public virtual DbSet<PerformerType> PerformanceTypes { get; set; }
+        public virtual DbSet<PerformerType> PerformerTypes { get; set; }
         public virtual DbSet<Performer> Performers { get; set; }
         public virtual DbSet<Venue> Venues { get; set; }
 

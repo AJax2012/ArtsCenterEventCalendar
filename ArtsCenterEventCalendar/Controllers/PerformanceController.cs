@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls.Expressions;
 using ArtsCenterEventCalendar.Models;
+using ArtsCenterEventCalendar.ViewModels;
 using Microsoft.Ajax.Utilities;
 
 namespace ArtsCenterEventCalendar.Controllers
@@ -35,6 +36,48 @@ namespace ArtsCenterEventCalendar.Controllers
                 .ToList();
 
             return View(performances);
+        }
+
+        // POST: Performance
+        public ActionResult New()
+        {
+            var performers = _context.Performers.ToList();
+            var venues = _context.Venues.ToList();
+
+            var viewModel = new PerformanceFormViewModel
+            {
+                Performance = new Performance(),
+                Performers = performers,
+                Venues = venues
+            };
+
+            return View("PerformanceForm", viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(Performance performance)
+        {
+            _context.Performances.Add(performance);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Performance");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var performance = _context.Performances.SingleOrDefault(p => p.Id == id);
+
+            if (performance == null)
+                return HttpNotFound();
+
+            var viewModel = new PerformanceFormViewModel
+            {
+                Performance = performance,
+                Performers = _context.Performers.ToList(),
+                Venues = _context.Venues.ToList()
+            };
+            return View("PerformanceForm", viewModel);
         }
     }
 }
