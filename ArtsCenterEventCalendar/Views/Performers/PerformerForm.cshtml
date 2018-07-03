@@ -26,12 +26,28 @@
         @Html.ValidationMessageFor(m => m.Performer.PerformerTypeId)
     </div>
 
-    // Genres - NEED TO IMPLEMENT JQUERY METHOD TO ADD IF MUSICIAN
+    // Genre
 @*     <div class="form-group"> *@
-@*         @Html.LabelFor(m => Model.Genres) *@
-@*         @Html.DropDownListFor(m => Model.Genres, new SelectList(Model.Genres, "Id", "Name"), "Select Performer Genre", new { @class = "form-control col-md-5" }) *@
-@*         @Html.ValidationMessageFor(m => Model.Genres) *@
+@*         @Html.LabelFor(m => m.Performer.GenreId) *@
+@*         @Html.DropDownListFor(m => m.Performer.GenreId, new SelectList(Model.Genres, "Id", "Name"), "Select Genre", new { @class = "form-control col-md-5" }) *@
+@*         @Html.ValidationMessageFor(m => m.Performer.GenreId) *@
 @*     </div> *@
+
+    // Topic
+@*     <div class="form-group"> *@
+@*         @Html.LabelFor(m => m.Performer.TopicId) *@
+@*         @Html.DropDownListFor(m => m.Performer.TopicId, new SelectList(Model.Topics, "Id", "Name"), "Select Topic", new { @class = "form-control col-md-5" }) *@
+@*         @Html.ValidationMessageFor(m => m.Performer.TopicId) *@
+@*     </div> *@
+
+    
+
+    // Tour Name
+    <div class="form-group">
+        @Html.LabelFor(m => m.Performer.TourName)
+        @Html.TextBoxFor(m => m.Performer.TourName, new { @class = "form-control col-md-5" })
+        @Html.ValidationMessageFor(m => m.Performer.TourName)
+    </div>
 
     // Description
     <div class="form-group">

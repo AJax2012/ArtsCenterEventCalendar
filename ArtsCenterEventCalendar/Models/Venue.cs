@@ -9,6 +9,7 @@ namespace ArtsCenterEventCalendar.Models
 
         public string Name { get; set; }
 
+        [Display(Name = "Number of Seats in Venue")]
         public int NumberOfSeats { get; set; }
 
         public Address Address { get; set; }

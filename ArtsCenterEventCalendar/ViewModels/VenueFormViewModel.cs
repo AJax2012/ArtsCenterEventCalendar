@@ -6,8 +6,9 @@ using ArtsCenterEventCalendar.Models;
 
 namespace ArtsCenterEventCalendar.ViewModels
 {
-    public class VenueViewModel
+    public class VenueFormViewModel
     {
-        public List<Venue> Venues { get; set; }
+        public IEnumerable<Address> Addresses { get; set; }
+        public Venue Venue { get; set; }
     }
 }

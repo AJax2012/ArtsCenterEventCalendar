@@ -1,0 +1,66 @@
+﻿@using ArtsCenterEventCalendar.Models
+@model ArtsCenterEventCalendar.ViewModels.VenueFormViewModel
+@{
+    ViewBag.Title = "VenueForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add or Edit Venues</h2>
+
+@using (Html.BeginForm("Save", "Venues"))
+{
+    // Initial Error Message
+    @Html.ValidationSummary()
+
+    // Name
+    <div class="form-group">
+        @Html.LabelFor(m => m.Venue.Name)
+        @Html.TextBoxFor(m => m.Venue.Name, new { @class = "form-control col-md-5" })
+        @Html.ValidationMessageFor(m => m.Venue.Name)
+    </div>
+
+    // Number of Seats
+    <div class="form-group">
+        @Html.LabelFor(m => m.Venue.NumberOfSeats)
+        @Html.TextBoxFor(m => m.Venue.NumberOfSeats, new { @class = "form-control col-md-5" })
+        @Html.ValidationMessageFor(m => m.Venue.NumberOfSeats)
+    </div>
+
+    /*
+     * BEGIN ADDRESS
+     * Street Address
+     */
+@*    <div class="form-group">
+        @Html.LabelFor(m => m.Venue.Address.StreetAddress)
+        @Html.TextBoxFor(m => m.Venue.Address.StreetAddress, new { @class = "form-control col-md-5" })
+        @Html.ValidationMessageFor(m => m.Venue.Address.StreetAddress)
+    </div>
+
+    // City
+    <div class="form-group">
+        @Html.LabelFor(m => m.Venue.Address.City)
+        @Html.TextBoxFor(m => m.Venue.Address.City, new { @class = "form-control col-md-5" })
+        @Html.ValidationMessageFor(m => m.Venue.Address.City)
+    </div>
+
+    // State
+    <div class="form-group">
+        @Html.LabelFor(m => m.Venue.Address.State)
+        @Html.TextBoxFor(m => m.Venue.Address.State, new { @class = "form-control col-md-5" })
+        @Html.ValidationMessageFor(m => m.Venue.Address.State)
+    </div>
+
+    // Zip Code
+    <div class="form-group">
+        @Html.LabelFor(m => m.Venue.Address.ZipCode)
+        @Html.TextBoxFor(m => m.Venue.Address.ZipCode, new { @class = "form-control col-md-5" })
+        @Html.ValidationMessageFor(m => m.Venue.Address.ZipCode)
+    </div>*@
+
+    @Html.HiddenFor(m => m.Venue.Id)
+    @Html.HiddenFor(m => m.Venue.AddressId, new { @value = 0 })
+    @Html.AntiForgeryToken()
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    @Html.ActionLink("Cancel", "Index", "Venues", null, new { @class = "btn btn-dark" })
+}

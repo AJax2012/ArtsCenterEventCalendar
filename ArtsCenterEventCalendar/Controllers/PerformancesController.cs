@@ -63,8 +63,6 @@ namespace ArtsCenterEventCalendar.Controllers
         public ActionResult Edit(int id)
         {
             var performance = _context.Performances.SingleOrDefault(p => p.Id == id);
-            var performers = _context.Performers.ToList();
-            var venues = _context.Venues.ToList();
 
             if (performance == null)
                 return HttpNotFound();
@@ -72,8 +70,8 @@ namespace ArtsCenterEventCalendar.Controllers
             var viewModel = new PerformanceFormViewModel
             {
                 Performance = performance,
-                Performers = performers,
-                Venues = venues
+                Performers = _context.Performers.ToList(),
+                Venues = _context.Venues.ToList()
             };
 
             return View("PerformanceForm", viewModel);
@@ -104,7 +102,7 @@ namespace ArtsCenterEventCalendar.Controllers
             {
                 var performanceInDb = _context.Performances.Single(p => p.Id == performance.Id);
 
-//                Mapper.Map(performance, performanceInDb); - getting exception for _wrapper?
+//                AutoMapper.Mapper.Map(performance, performanceInDb); // getting exception for _entitywrapper?
                 performanceInDb.PerformerId = performance.PerformerId;
                 performanceInDb.VenueId = performance.VenueId;
                 performanceInDb.EventDateTime = performance.EventDateTime;

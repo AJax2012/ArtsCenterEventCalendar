@@ -27,14 +27,16 @@ else
         <tbody>
         @foreach (var venue in Model)
         {
+            var address = venue.Address;
             <tr class="table-active">
-                
-                <td>@venue.Name</td>
+                <td>
+                    @Html.ActionLink(venue.Name, "Edit", "Venues", new {id = venue.Id}, null)
+                </td>
                 <td>@venue.NumberOfSeats</td>
-                <td>@venue.Address.StreetAddress</td>
-                <td>@venue.Address.City</td>
-                <td>@venue.Address.State</td>
-                <td>@venue.Address.ZipCode</td>
+                <td>@address.StreetAddress</td>
+                <td>@address.City</td>
+                <td>@address.State</td>
+                <td>@address.ZipCode</td>
             </tr>
         }
         </tbody>
