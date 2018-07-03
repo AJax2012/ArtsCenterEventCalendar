@@ -1,5 +1,5 @@
-﻿@using System.Activities.Statements
-@using ArtsCenterEventCalendar.Models
+﻿@using ArtsCenterEventCalendar.Models
+@using Microsoft.Ajax.Utilities
 @model IEnumerable<Performance>
 @{
     ViewBag.Title = "Index";
@@ -17,8 +17,7 @@
         <th scope="col">Date</th>
         <th scope="col">Time</th>
         <th scope="col">Performer</th>
-        <th scope="col">Type</th>
-        @* <th scope="col">Genre</th> *@
+        <th scope="col">Genre/<br/>Topics</th>
         <th scope="col">Venue</th>
         <th scope="col">Location</th>
         <th scope="col">Price</th>
@@ -28,6 +27,7 @@
     <tbody>
     @foreach (var performance in Model)
     {
+        var performer = performance.Performer;
         <tr class="table-active">
             <td>
                 <div class="date">
@@ -42,10 +42,18 @@
             </td>
             <td>@performance.EventDateTime.ToShortTimeString()</td>
             <td>
-                @Html.ActionLink(performance.Performer.Name, "Edit", "Performances", new {id = performance.Id}, null)
+                @Html.ActionLink(performer.Name, "Edit", "Performances", new {id = performance.Id}, null)
             </td>
-            <td>@performance.Performer.PerformerType.Name</td>
-            @* <td>Genre</td> *@
+            <td>
+                @if (!performer.GenreId.Equals(null))
+                {
+                    @performer.Genre.Name
+                }
+                @if (!performer.TopicId.Equals(null))
+                {
+                    @performer.Topic.Name
+                }
+            </td>
             <td>@performance.Venue.Name</td>
             <td>
                 @performance.Venue.Address.City,

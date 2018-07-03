@@ -2,7 +2,7 @@
 
 namespace ArtsCenterEventCalendar.Models
 {
-    public class Genre
+    public class Topic
     {
         public int Id { get; set; }
         public string Name { get; set; }

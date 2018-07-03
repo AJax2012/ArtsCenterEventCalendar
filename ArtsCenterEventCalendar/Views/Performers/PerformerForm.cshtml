@@ -1,0 +1,47 @@
+﻿@using ArtsCenterEventCalendar.Models
+@model ArtsCenterEventCalendar.ViewModels.PerformerFormViewModel
+@{
+    ViewBag.Title = "PerformerForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add or Edit Performers</h2>
+
+@using (Html.BeginForm("Save", "Performers"))
+{
+    // Initial Error Message
+    @Html.ValidationSummary()
+
+    // Name
+    <div class="form-group">
+        @Html.LabelFor(m => m.Performer.Name)
+        @Html.TextBoxFor(m => m.Performer.Name, new { @class = "form-control col-md-5" })
+        @Html.ValidationMessageFor(m => m.Performer.Name)
+    </div>
+
+    // Performer Type
+    <div class="form-group">
+        @Html.LabelFor(m => m.Performer.PerformerTypeId)
+        @Html.DropDownListFor(m => m.Performer.PerformerTypeId, new SelectList(Model.PerformerTypes, "Id", "Name"), "Select Performer Type", new { @class = "form-control col-md-5" })
+        @Html.ValidationMessageFor(m => m.Performer.PerformerTypeId)
+    </div>
+
+    // Genres - NEED TO IMPLEMENT JQUERY METHOD TO ADD IF MUSICIAN
+@*     <div class="form-group"> *@
+@*         @Html.LabelFor(m => Model.Genres) *@
+@*         @Html.DropDownListFor(m => Model.Genres, new SelectList(Model.Genres, "Id", "Name"), "Select Performer Genre", new { @class = "form-control col-md-5" }) *@
+@*         @Html.ValidationMessageFor(m => Model.Genres) *@
+@*     </div> *@
+
+    // Description
+    <div class="form-group">
+        @Html.LabelFor(m => m.Performer.Description)
+        @Html.TextAreaFor(m => m.Performer.Description, new { @class = "form-control col-md-5", rows = 10, placeholder = "Description of Performer (Optional)" })
+    </div>
+
+    @Html.HiddenFor(m => m.Performer.Id)
+    @Html.AntiForgeryToken()
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    @Html.ActionLink("Cancel", "Index", "Performers", null, new { @class = "btn btn-dark" })
+}

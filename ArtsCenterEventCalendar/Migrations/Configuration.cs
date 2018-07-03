@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using ArtsCenterEventCalendar.Models;
-using ArtsCenterEventCalendar.Services;
 
 namespace ArtsCenterEventCalendar.Migrations
 {

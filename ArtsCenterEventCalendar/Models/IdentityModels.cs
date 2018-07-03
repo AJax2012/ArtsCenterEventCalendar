@@ -24,8 +24,6 @@ namespace ArtsCenterEventCalendar.Models
     {
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Performance> Performances { get; set; }
-        public virtual DbSet<Genre> Genres { get; set; }
-        public virtual DbSet<Musician> Musicians { get; set; }
         public virtual DbSet<PerformerType> PerformerTypes { get; set; }
         public virtual DbSet<Performer> Performers { get; set; }
         public virtual DbSet<Venue> Venues { get; set; }
@@ -44,25 +42,10 @@ namespace ArtsCenterEventCalendar.Models
         {
             // ADD CONFIGURATIONS
             modelBuilder.Configurations.Add(new AddressConfiguration());
-            modelBuilder.Configurations.Add(new GenreConfiguration());
             modelBuilder.Configurations.Add(new PerformanceConfiguration());
             modelBuilder.Configurations.Add(new PerformerConfiguration());
             modelBuilder.Configurations.Add(new PerformerTypeConfiguration());
-
             
-            // REQUIREMENTS
-            modelBuilder.Entity<Venue>()
-                .Property(p => p.Name)
-                .IsRequired()
-                .HasMaxLength(100);
-            
-            // RELATIONSHIPS
-            modelBuilder.Entity<Musician>()
-                .HasRequired(m => m.Genre)
-                .WithMany(g => g.Musicians)
-                .HasForeignKey(m => m.GenreId)
-                .WillCascadeOnDelete(false);
-
             base.OnModelCreating(modelBuilder);
         }
     }

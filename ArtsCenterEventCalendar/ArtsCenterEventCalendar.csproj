@@ -225,12 +225,15 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\VenuesController.cs" />
     <Compile Include="Dtos\PerformanceDto.cs" />
+    <Compile Include="Dtos\PerformerDto.cs" />
     <Compile Include="Dtos\VenueDto.cs" />
     <Compile Include="EntityConfigurations\AddressConfiguration.cs" />
     <Compile Include="EntityConfigurations\GenreConfiguration.cs" />
     <Compile Include="EntityConfigurations\PerformanceConfiguration.cs" />
     <Compile Include="EntityConfigurations\PerformerConfiguration.cs" />
     <Compile Include="EntityConfigurations\PerformerTypeConfiguration.cs" />
+    <Compile Include="EntityConfigurations\TopicConfiguration.cs" />
+    <Compile Include="EntityConfigurations\VenueConfiguration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -262,23 +265,36 @@
     <Compile Include="Migrations\201807020412213_PopulatePerformancesTable.Designer.cs">
       <DependentUpon>201807020412213_PopulatePerformancesTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807031740487_RemoveInheritenceFromPerformer.cs" />
+    <Compile Include="Migrations\201807031740487_RemoveInheritenceFromPerformer.Designer.cs">
+      <DependentUpon>201807031740487_RemoveInheritenceFromPerformer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807031845327_ReaddGenreAddTopic.cs" />
+    <Compile Include="Migrations\201807031845327_ReaddGenreAddTopic.Designer.cs">
+      <DependentUpon>201807031845327_ReaddGenreAddTopic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807031859108_PopulateGenres.cs" />
+    <Compile Include="Migrations\201807031859108_PopulateGenres.Designer.cs">
+      <DependentUpon>201807031859108_PopulateGenres.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807031900434_PopulateTopics.cs" />
+    <Compile Include="Migrations\201807031900434_PopulateTopics.Designer.cs">
+      <DependentUpon>201807031900434_PopulateTopics.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Genre.cs" />
-    <Compile Include="Models\Musician.cs" />
     <Compile Include="Models\Performance.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PerformerType.cs" />
     <Compile Include="Models\Performer.cs" />
+    <Compile Include="Models\Topic.cs" />
     <Compile Include="Models\Venue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IPerformerFactory.cs" />
-    <Compile Include="Services\PerformerFactory.cs" />
-    <Compile Include="Services\PerformerService.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\PerformerViewModel.cs" />
+    <Compile Include="ViewModels\PerformerFormViewModel.cs" />
     <Compile Include="ViewModels\PerformanceFormViewModel.cs" />
     <Compile Include="ViewModels\VenueViewModel.cs" />
   </ItemGroup>
@@ -391,9 +407,11 @@
     <Content Include="Views\Performers\Index.cshtml" />
     <Content Include="Views\Venues\Index.cshtml" />
     <Content Include="Views\Performances\PerformanceForm.cshtml" />
+    <Content Include="Views\Performers\PerformerForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -427,6 +445,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807020412213_PopulatePerformancesTable.resx">
       <DependentUpon>201807020412213_PopulatePerformancesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807031740487_RemoveInheritenceFromPerformer.resx">
+      <DependentUpon>201807031740487_RemoveInheritenceFromPerformer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807031845327_ReaddGenreAddTopic.resx">
+      <DependentUpon>201807031845327_ReaddGenreAddTopic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807031859108_PopulateGenres.resx">
+      <DependentUpon>201807031859108_PopulateGenres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807031900434_PopulateTopics.resx">
+      <DependentUpon>201807031900434_PopulateTopics.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

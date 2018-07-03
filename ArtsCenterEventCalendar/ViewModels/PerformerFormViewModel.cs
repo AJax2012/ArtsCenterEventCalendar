@@ -6,8 +6,9 @@ using ArtsCenterEventCalendar.Models;
 
 namespace ArtsCenterEventCalendar.ViewModels
 {
-    public class PerformerViewModel
+    public class PerformerFormViewModel
     {
-        public List<Performer> Performers { get; set; }
+        public IEnumerable<PerformerType> PerformerTypes { get; set; }
+        public Performer Performer { get; set; }
     }
 }

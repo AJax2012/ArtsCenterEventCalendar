@@ -31,6 +31,8 @@ namespace ArtsCenterEventCalendar.Controllers
         {
             var performances = _context.Performances
                 .Include(p => p.Performer)
+                .Include(p => p.Performer.Genre)
+                .Include(p => p.Performer.Topic)
                 .Include(p => p.Performer.PerformerType)
                 .Include(p => p.Venue)
                 .Include(p => p.Venue.Address)
@@ -61,6 +63,8 @@ namespace ArtsCenterEventCalendar.Controllers
         public ActionResult Edit(int id)
         {
             var performance = _context.Performances.SingleOrDefault(p => p.Id == id);
+            var performers = _context.Performers.ToList();
+            var venues = _context.Venues.ToList();
 
             if (performance == null)
                 return HttpNotFound();
@@ -68,8 +72,8 @@ namespace ArtsCenterEventCalendar.Controllers
             var viewModel = new PerformanceFormViewModel
             {
                 Performance = performance,
-                Performers = _context.Performers.ToList(),
-                Venues = _context.Venues.ToList()
+                Performers = performers,
+                Venues = venues
             };
 
             return View("PerformanceForm", viewModel);

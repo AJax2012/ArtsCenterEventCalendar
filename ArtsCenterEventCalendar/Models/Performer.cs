@@ -6,7 +6,7 @@ using System.Web;
 
 namespace ArtsCenterEventCalendar.Models
 {
-    public abstract class Performer
+    public class Performer
     {
         public int Id { get; set; }
 
@@ -14,6 +14,16 @@ namespace ArtsCenterEventCalendar.Models
 
         public string Description { get; set; }
 
+        public string TourName { get; set; }
+
+        public Genre Genre { get; set; }
+
+        public int? GenreId { get; set; }
+
+        public Topic Topic { get; set; }
+
+        public int? TopicId { get; set; }
+        
         public PerformerType PerformerType { get; set; }
 
         [Display(Name = "Performer Type")]

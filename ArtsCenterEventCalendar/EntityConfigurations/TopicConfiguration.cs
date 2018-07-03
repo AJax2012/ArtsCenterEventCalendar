@@ -7,16 +7,16 @@ using ArtsCenterEventCalendar.Models;
 
 namespace ArtsCenterEventCalendar.EntityConfigurations
 {
-    public class GenreConfiguration : EntityTypeConfiguration<Genre>
+    public class TopicConfiguration : EntityTypeConfiguration<Topic>
     {
-        public GenreConfiguration()
+        public TopicConfiguration()
         {
-            Property(g => g.Name)
+            Property(t => t.Name)
                 .IsRequired()
                 .HasMaxLength(20);
 
-            HasMany(g => g.Performers)
-                .WithOptional(p => p.Genre);
+            HasMany(t => t.Performers)
+                .WithOptional(p => p.Topic);
         }
     }
 }
