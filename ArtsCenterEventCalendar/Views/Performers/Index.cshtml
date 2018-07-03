@@ -17,8 +17,8 @@ else
         <thead>
         <tr>
             <th scope="col">Performer</th>
-            <th scope="col">performer Type</th>
-            @* <th scope="col">Genre</th> *@
+            <th scope="col">Performer Type</th>
+            <th scope="col">Genre / Topic</th>
             <th scope="col">Description</th>
         </tr>
         </thead>
@@ -28,7 +28,16 @@ else
             <tr class="table-active">
                 <td>@performer.Name</td>
                 <td>@performer.PerformerType.Name</td>
-                @* <td>@performer.</td> *@
+                <td>
+                    @if (performer.Genre != null)
+                    {
+                        @performer.Genre.Name
+                    }
+                    @if (performer.Topic != null)
+                    {
+                        @performer.Topic.Name
+                    }
+                </td>
                 <td>@performer.Description</td>
             </tr>
         }

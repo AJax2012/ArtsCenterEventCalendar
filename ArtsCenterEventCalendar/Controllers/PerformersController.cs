@@ -28,6 +28,8 @@ namespace ArtsCenterEventCalendar.Controllers
         {
             var performers = _context.Performers
                 .Include(p => p.PerformerType)
+                .Include(p => p.Genre)
+                .Include(p => p.Topic)
                 .ToList();
 
             return View(performers);

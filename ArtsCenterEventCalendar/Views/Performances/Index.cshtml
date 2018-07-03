@@ -45,11 +45,11 @@
                 @Html.ActionLink(performer.Name, "Edit", "Performances", new {id = performance.Id}, null)
             </td>
             <td>
-                @if (!performer.GenreId.Equals(null))
+                @if (performer.GenreId != null)
                 {
                     @performer.Genre.Name
                 }
-                @if (!performer.TopicId.Equals(null))
+                @if (performer.TopicId != null)
                 {
                     @performer.Topic.Name
                 }
