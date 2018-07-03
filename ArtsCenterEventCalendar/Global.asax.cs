@@ -8,6 +8,8 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
+using ArtsCenterEventCalendar.App_Start;
+using AutoMapper;
 
 namespace ArtsCenterEventCalendar
 {
@@ -15,6 +17,7 @@ namespace ArtsCenterEventCalendar
     {
         protected void Application_Start()
         {
+            Mapper.Initialize(c => c.AddProfile<MappingProfile>());
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

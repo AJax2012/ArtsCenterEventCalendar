@@ -1,9 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
+using ArtsCenterEventCalendar.Models;
 
-namespace ArtsCenterEventCalendar.Models
+namespace ArtsCenterEventCalendar.Dtos
 {
-    public class Venue
+    public class VenueDto
     {
         public int Id { get; set; }
 
@@ -11,9 +15,6 @@ namespace ArtsCenterEventCalendar.Models
 
         public int NumberOfSeats { get; set; }
 
-        public Address Address { get; set; }
-
-        [Display(Name = "Address")]
         public int AddressId { get; set; }
 
         public ICollection<Performance> Performances { get; set; }

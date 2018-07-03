@@ -7,15 +7,16 @@ using System.Web.Mvc;
 using System.Web.UI.WebControls.Expressions;
 using ArtsCenterEventCalendar.Models;
 using ArtsCenterEventCalendar.ViewModels;
+using AutoMapper;
 using Microsoft.Ajax.Utilities;
 
 namespace ArtsCenterEventCalendar.Controllers
 {
-    public class PerformanceController : Controller
+    public class PerformancesController : Controller
     {
         private ApplicationDbContext _context;
 
-        public PerformanceController()
+        public PerformancesController()
         {
             _context = new ApplicationDbContext();
         }
@@ -37,8 +38,7 @@ namespace ArtsCenterEventCalendar.Controllers
 
             return View(performances);
         }
-
-        // POST: Performance
+        
         public ActionResult New()
         {
             var performers = _context.Performers.ToList();
@@ -46,22 +46,16 @@ namespace ArtsCenterEventCalendar.Controllers
 
             var viewModel = new PerformanceFormViewModel
             {
-                Performance = new Performance(),
+                Performance = new Performance()
+                {
+                    EventDateTime = DateTime.Today.AddHours(19).AddMinutes(30)
+                },
+
                 Performers = performers,
                 Venues = venues
             };
 
             return View("PerformanceForm", viewModel);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Save(Performance performance)
-        {
-            _context.Performances.Add(performance);
-            _context.SaveChanges();
-
-            return RedirectToAction("Index", "Performance");
         }
 
         public ActionResult Edit(int id)
@@ -77,7 +71,46 @@ namespace ArtsCenterEventCalendar.Controllers
                 Performers = _context.Performers.ToList(),
                 Venues = _context.Venues.ToList()
             };
+
             return View("PerformanceForm", viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(Performance performance)
+        {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new PerformanceFormViewModel
+                {
+                    Performance = performance,
+                    Performers = _context.Performers.ToList(),
+                    Venues = _context.Venues.ToList()
+                };
+
+                return View("PerformanceForm", viewModel);
+            }
+
+            if (performance.Id == 0)
+            {
+                performance.SeatsRemaining = performance.Venue.NumberOfSeats;
+                _context.Performances.Add(performance);
+            }
+            else
+            {
+                var performanceInDb = _context.Performances.Single(p => p.Id == performance.Id);
+
+//                Mapper.Map(performance, performanceInDb); - getting exception for _wrapper?
+                performanceInDb.PerformerId = performance.PerformerId;
+                performanceInDb.VenueId = performance.VenueId;
+                performanceInDb.EventDateTime = performance.EventDateTime;
+                performanceInDb.Price = performance.Price;
+                performanceInDb.Description = performance.Description;
+            }
+            
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Performances");
         }
     }
 }

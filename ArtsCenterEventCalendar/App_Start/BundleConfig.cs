@@ -19,14 +19,16 @@ namespace ArtsCenterEventCalendar
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+            bundles.Add(new ScriptBundle("~/bundles/lib").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/popper.js"));
+                      "~/Scripts/popper.js",
+                      "~/Scripts/jquery.datetimepicker.full.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-slate.css",
                       "~/Content/site.css",
-                      "~/Content/time-icon.css"));
+                      "~/Content/time-icon.css",
+                      "~/Content/jquery.datetimepicker.css"));
         }
     }
 }

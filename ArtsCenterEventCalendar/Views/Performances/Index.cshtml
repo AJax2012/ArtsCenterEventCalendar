@@ -1,25 +1,28 @@
 ﻿@using System.Activities.Statements
 @using ArtsCenterEventCalendar.Models
-@model dynamic
+@model IEnumerable<Performance>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Denver Area Performances</h1>
+<h1 class="custom-control-inline">Denver Area Performances</h1>
 
-
-<table class="table table-hover table-responsive-lg table-striped table-dark">
+<p class="custom-control-inline float-right">
+    @Html.ActionLink("New Performance", "New", "Performances", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table table-hover table-responsive-lg table-striped table-dark" width="1000">
     <thead>
     <tr>
         <th scope="col">Date</th>
         <th scope="col">Time</th>
         <th scope="col">Performer</th>
-        <th scope="col">Performance Type</th>
-        @* <td scope="col">Genre</td> *@
+        <th scope="col">Type</th>
+        @* <th scope="col">Genre</th> *@
         <th scope="col">Venue</th>
         <th scope="col">Location</th>
-        <th scope="col">Ticket Price</th>
+        <th scope="col">Price</th>
+        <th scope="col">Delete</th>
     </tr>
     </thead>
     <tbody>
@@ -38,13 +41,19 @@
                 </div>
             </td>
             <td>@performance.EventDateTime.ToShortTimeString()</td>
-            <td>@performance.Performer.Name</td>
+            <td>
+                @Html.ActionLink(performance.Performer.Name, "Edit", "Performances", new {id = performance.Id}, null)
+            </td>
             <td>@performance.Performer.PerformerType.Name</td>
-            @* <td>Genre will go here</td> *@
+            @* <td>Genre</td> *@
             <td>@performance.Venue.Name</td>
-            <td>@performance.Venue.Address.City, 
-                @performance.Venue.Address.State</td>
+            <td>
+                @performance.Venue.Address.City,
+                @performance.Venue.Address.State
+            </td>
             <td>$@performance.Price</td>
+            @* will implement using JS in the future *@
+            <td><button class="btn btn-sm btn-dark">Delete</button></td>
         </tr>
     }
     </tbody>

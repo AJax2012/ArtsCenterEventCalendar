@@ -1,0 +1,87 @@
+﻿@using ArtsCenterEventCalendar.Models
+@model ArtsCenterEventCalendar.ViewModels.PerformanceFormViewModel
+@{
+    ViewBag.Title = "PerformanceForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add or Update Performance</h2>
+
+@using (Html.BeginForm("Save", "Performances"))
+{
+    // Initial Error Message
+    @Html.ValidationSummary()
+
+    // Performer
+    <div class="form-group">
+        @Html.LabelFor(m => m.Performance.PerformerId)
+        @Html.DropDownListFor(m => m.Performance.PerformerId, new SelectList(Model.Performers, "Id", "Name"), "Select Performer", new { @class = "form-control col-md-5" })
+        @Html.ValidationMessageFor(m => m.Performance.PerformerId)
+    </div>
+
+    // Venue
+    <div class="form-group">
+        @Html.LabelFor(m => m.Performance.VenueId)
+        @Html.DropDownListFor(m => m.Performance.VenueId, new SelectList(Model.Venues, "Id", "Name"), "Select Venue", new { @class = "form-control col-md-5" })
+        @Html.ValidationMessageFor(m => m.Performance.VenueId)
+    </div>
+
+    // Event Date/Time
+    <div class="form-group">
+        @Html.LabelFor(m => m.Performance.EventDateTime)
+        @Html.TextBoxFor(m => m.Performance.EventDateTime, "{0:M/d/yyyy h:mm tt}", new { @class = "form-control col-md-5", @id = "datetimepicker" })
+        @Html.ValidationMessageFor(m => m.Performance.EventDateTime)
+    </div>
+
+    // Price
+    <div class="form-group">
+        @Html.LabelFor(m => m.Performance.Price)
+        @Html.TextBoxFor(m => m.Performance.Price, new { @class = "form-control col-md-5" })
+        @Html.ValidationMessageFor(m => m.Performance.Price)
+    </div>
+
+    // Description
+    <div class="form-group">
+        @Html.LabelFor(m => m.Performance.Description)
+        @Html.TextAreaFor(m => m.Performance.Description, new { @class = "form-control col-md-5", rows = 10, placeholder = "Description of Performance (Optional)" })
+    </div>
+
+    // Venue Seats Available will go here
+    
+
+    @Html.HiddenFor(m => m.Performance.Id)
+    @Html.HiddenFor(m => m.Performance.Venue.NumberOfSeats, new { @Value = "0" })
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Submit</button>
+    @Html.ActionLink("Cancel", "Index", "Performances", null, new { @class = "btn btn-dark" })
+}
+
+
+@section scripts
+{
+    <script>
+        jQuery('#datetimepicker').datetimepicker({
+            theme: 'dark',
+            validateOnBlur: false,
+            format: 'n/j/Y g:i A',
+            timepickerScrollbar: false,
+            minDate: 0,
+            allowTimes: [
+                '11:00', '11:30',
+                '12:00', '12:30',
+                '13:00', '13:30',
+                '14:00', '14:30',
+                '15:00', '15:30',
+                '16:00', '16:30',
+                '17:00', '17:30',
+                '18:00', '18:30',
+                '19:00', '19:30',
+                '20:00', '20:30',
+                '21:00', '21:30',
+                '22:00', '22:30',
+                '23:00', '23:30'
+            ]
+        });
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+}

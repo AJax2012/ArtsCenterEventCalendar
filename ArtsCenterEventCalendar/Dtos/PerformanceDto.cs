@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using ArtsCenterEventCalendar.Models;
 
-namespace ArtsCenterEventCalendar.Models
+namespace ArtsCenterEventCalendar.Dtos
 {
-    public class Performance
+    public class PerformanceDto
     {
         public int Id { get; set; }
 
@@ -16,17 +17,10 @@ namespace ArtsCenterEventCalendar.Models
 
         public string Description { get; set; }
 
-        [Display(Name = "Event Date and Time")]
         public DateTime EventDateTime { get; set; }
 
-        public Performer Performer { get; set; }
-
-        [Display(Name = "Performer")]
         public int PerformerId { get; set; }
 
-        public virtual Venue Venue { get; set; }
-
-        [Display(Name = "Venue")]
         public int VenueId { get; set; }
     }
 }

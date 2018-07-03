@@ -9,11 +9,11 @@ using ArtsCenterEventCalendar.ViewModels;
 
 namespace ArtsCenterEventCalendar.Controllers
 {
-    public class PerformerController : Controller
+    public class PerformersController : Controller
     {
         private ApplicationDbContext _context;
 
-        public PerformerController()
+        public PerformersController()
         {
             _context = new ApplicationDbContext();
         }
