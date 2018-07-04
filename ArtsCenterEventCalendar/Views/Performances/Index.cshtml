@@ -17,11 +17,11 @@
         <th scope="col">Date</th>
         <th scope="col">Time</th>
         <th scope="col">Performer</th>
-        <th scope="col">Genre/<br/>Topics</th>
+        <th scope="col">Genre / Topics</th>
         <th scope="col">Venue</th>
         <th scope="col">Location</th>
         <th scope="col">Price</th>
-        <th scope="col">Delete</th>
+        <th scope="col">Edit/<br/>Delete</th>
     </tr>
     </thead>
     <tbody>
@@ -42,6 +42,7 @@
             </td>
             <td>@performance.EventDateTime.ToShortTimeString()</td>
             <td>
+                @* this will eventually filter all performances for performer *@
                 @Html.ActionLink(performer.Name, "Edit", "Performances", new {id = performance.Id}, null)
             </td>
             <td>
@@ -61,7 +62,11 @@
             </td>
             <td>$@performance.Price</td>
             @* will implement using JS in the future *@
-            <td><button class="btn btn-sm btn-dark">Delete</button></td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Performances", new {id = performer.Id}, new { @class = "btn btn-xs btn-secondary" })
+                <br/>
+                <button class="btn btn-xs btn-dark" style="margin-top: 4px;">Delete</button>
+            </td>
         </tr>
     }
     </tbody>
