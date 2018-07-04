@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using ArtsCenterEventCalendar.Models;
 using ArtsCenterEventCalendar.ViewModels;
+using AutoMapper;
 
 namespace ArtsCenterEventCalendar.Controllers
 {
@@ -83,12 +84,17 @@ namespace ArtsCenterEventCalendar.Controllers
             else
             {
                 var venueInDb = _context.Venues.Single(v => v.Id == venue.Id);
+                var addressInDb = _context.Addresses.Single(a => a.Id == venue.AddressId);
 
                 venueInDb.Id = venue.Id;
                 venueInDb.Name = venue.Name;
-                venueInDb.NumberOfSeats = venue.NumberOfSeats;
+                venueInDb.Capacity = venue.Capacity;
                 venueInDb.AddressId = venue.AddressId;
                 venueInDb.Performances = venue.Performances;
+                addressInDb.City = venue.Address.City;
+                addressInDb.State = venue.Address.State;
+                addressInDb.StreetAddress = venue.Address.StreetAddress;
+                addressInDb.ZipCode = venue.Address.ZipCode;
             }
 
             _context.SaveChanges();

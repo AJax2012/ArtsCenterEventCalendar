@@ -21,16 +21,16 @@
 
     // Number of Seats
     <div class="form-group">
-        @Html.LabelFor(m => m.Venue.NumberOfSeats)
-        @Html.TextBoxFor(m => m.Venue.NumberOfSeats, new { @class = "form-control col-md-5" })
-        @Html.ValidationMessageFor(m => m.Venue.NumberOfSeats)
+        @Html.LabelFor(m => m.Venue.Capacity)
+        @Html.TextBoxFor(m => m.Venue.Capacity, new { @class = "form-control col-md-5" })
+        @Html.ValidationMessageFor(m => m.Venue.Capacity)
     </div>
 
     /*
      * BEGIN ADDRESS
      * Street Address
      */
-@*    <div class="form-group">
+    <div class="form-group">
         @Html.LabelFor(m => m.Venue.Address.StreetAddress)
         @Html.TextBoxFor(m => m.Venue.Address.StreetAddress, new { @class = "form-control col-md-5" })
         @Html.ValidationMessageFor(m => m.Venue.Address.StreetAddress)
@@ -55,10 +55,10 @@
         @Html.LabelFor(m => m.Venue.Address.ZipCode)
         @Html.TextBoxFor(m => m.Venue.Address.ZipCode, new { @class = "form-control col-md-5" })
         @Html.ValidationMessageFor(m => m.Venue.Address.ZipCode)
-    </div>*@
+    </div>
 
     @Html.HiddenFor(m => m.Venue.Id)
-    @Html.HiddenFor(m => m.Venue.AddressId, new { @value = 0 })
+    @Html.HiddenFor(m => m.Venue.AddressId)
     @Html.AntiForgeryToken()
 
     <button type="submit" class="btn btn-primary">Submit</button>

@@ -95,7 +95,7 @@ namespace ArtsCenterEventCalendar.Controllers
 
             if (performance.Id == 0)
             {
-                performance.SeatsRemaining = performance.Venue.NumberOfSeats;
+                performance.SeatsRemaining = performance.Venue.Capacity;
                 _context.Performances.Add(performance);
             }
             else

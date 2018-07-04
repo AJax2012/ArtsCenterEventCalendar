@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using ArtsCenterEventCalendar.Models;
 using ArtsCenterEventCalendar.ViewModels;
+using AutoMapper;
 
 namespace ArtsCenterEventCalendar.Controllers
 {

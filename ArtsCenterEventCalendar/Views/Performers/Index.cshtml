@@ -5,8 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Perormers coming to Denver!</h2>
+<h1 class="custom-control-inline">Perormers coming to Denver!</h1>
 
+<p class="custom-control-inline float-right">
+    @Html.ActionLink("New Performer", "New", "Performers", null, new { @class = "btn btn-primary" })
+</p>
 @if (!Model.Any())
 {
     <p>List of performers coming soon!</p>
@@ -15,34 +18,34 @@ else
 {
     <table class="table table-hover table-responsive-lg table-striped table-dark">
         <thead>
-        <tr>
-            <th scope="col">Performer</th>
-            <th scope="col">Performer Type</th>
-            <th scope="col">Genre / Topic</th>
-            <th scope="col">Description</th>
-        </tr>
+            <tr>
+                <th scope="col">Performer</th>
+                <th scope="col">Performer Type</th>
+                <th scope="col">Genre / Topic</th>
+                <th scope="col">Description</th>
+            </tr>
         </thead>
         <tbody>
-        @foreach (var performer in Model)
-        {
-            <tr class="table-active">
-                <td>
-                    @Html.ActionLink(performer.Name, "Edit", "Performers", new {id = performer.Id}, null)
-                </td>
-                <td>@performer.PerformerType.Name</td>
-                <td>
-                    @if (performer.Genre != null)
-                    {
-                        @performer.Genre.Name
-                    }
-                    @if (performer.Topic != null)
-                    {
-                        @performer.Topic.Name
-                    }
-                </td>
-                <td>@performer.Description</td>
-            </tr>
-        }
+            @foreach (var performer in Model)
+            {
+                <tr class="table-active">
+                    <td>
+                        @Html.ActionLink(performer.Name, "Edit", "Performers", new { id = performer.Id }, null)
+                    </td>
+                    <td>@performer.PerformerType.Name</td>
+                    <td>
+                        @if (performer.Genre != null)
+                        {
+                            @performer.Genre.Name
+                        }
+                        @if (performer.Topic != null)
+                        {
+                            @performer.Topic.Name
+                        }
+                    </td>
+                    <td>@performer.Description</td>
+                </tr>
+            }
         </tbody>
     </table>
 }

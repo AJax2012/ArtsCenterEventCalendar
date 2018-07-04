@@ -14,8 +14,8 @@ namespace ArtsCenterEventCalendar.App_Start
         {
            var config = new MapperConfiguration(x =>
            {
-               x.CreateMap<Performance, PerformanceDto>();
-               x.CreateMap<PerformanceDto, Performance>();
+               x.CreateMap<Performance, PerformanceDto>()
+                   .ReverseMap();
            });
         }
     }

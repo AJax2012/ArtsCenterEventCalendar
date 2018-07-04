@@ -13,7 +13,7 @@ namespace ArtsCenterEventCalendar.Dtos
 
         public string Name { get; set; }
 
-        public int NumberOfSeats { get; set; }
+        public int Capacity { get; set; }
 
         public int AddressId { get; set; }
 

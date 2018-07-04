@@ -50,7 +50,7 @@
     
 
     @Html.HiddenFor(m => m.Performance.Id)
-    @Html.HiddenFor(m => m.Performance.Venue.NumberOfSeats, new { @Value = "0" })
+    @Html.HiddenFor(m => m.Performance.Venue.Capacity, new { @Value = "0" })
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Submit</button>
     @Html.ActionLink("Cancel", "Index", "Performances", null, new { @class = "btn btn-dark" })

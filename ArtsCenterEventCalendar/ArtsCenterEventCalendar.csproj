@@ -281,6 +281,10 @@
     <Compile Include="Migrations\201807031900434_PopulateTopics.Designer.cs">
       <DependentUpon>201807031900434_PopulateTopics.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807040339293_ChangeNoOfSeatsToCapacity.cs" />
+    <Compile Include="Migrations\201807040339293_ChangeNoOfSeatsToCapacity.Designer.cs">
+      <DependentUpon>201807040339293_ChangeNoOfSeatsToCapacity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
@@ -458,6 +462,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807031900434_PopulateTopics.resx">
       <DependentUpon>201807031900434_PopulateTopics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807040339293_ChangeNoOfSeatsToCapacity.resx">
+      <DependentUpon>201807040339293_ChangeNoOfSeatsToCapacity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
