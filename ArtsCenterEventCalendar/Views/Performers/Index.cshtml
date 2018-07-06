@@ -8,7 +8,7 @@
 <h1 class="custom-control-inline">Perormers coming to Denver!</h1>
 
 <p class="custom-control-inline float-right">
-    @Html.ActionLink("New Performer", "New", "Performers", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("New Performer", "New", "Performers", null, new { @class = "btn btn-primary btn-sm" })
 </p>
 @if (!Model.Any())
 {
@@ -16,13 +16,14 @@
 }
 else
 {
-    <table class="table table-hover table-responsive-lg table-striped table-dark">
+    <table class="table table-hover table-responsive-lg table-striped table-dark" id="myTable">
         <thead>
             <tr>
                 <th scope="col">Performer</th>
                 <th scope="col">Performer Type</th>
                 <th scope="col">Genre / Topic</th>
                 <th scope="col">Description</th>
+                <th scope="col">Edit/Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -44,8 +45,22 @@ else
                         }
                     </td>
                     <td>@performer.Description</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Performers", new { id = performer.Id }, new { @class = "btn btn-xs btn-secondary", @style = "display: inline;" })
+                        @Html.ActionLink("Delete", "Edit", "Performers", new { id = performer.Id }, new { @class = "btn btn-xs btn-dark", @style = "display: inline;" })
+                    </td>
                 </tr>
+
             }
         </tbody>
     </table>
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready( function () {
+            $('#myTable').DataTable();
+        } );
+    </script>
 }

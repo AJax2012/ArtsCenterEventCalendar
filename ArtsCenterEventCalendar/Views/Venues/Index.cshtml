@@ -8,7 +8,7 @@
 <h1 class="custom-control-inline">Denver Area Venues</h1>
 
 <p class="custom-control-inline float-right">
-    @Html.ActionLink("New Venue", "New", "Venues", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("New Venue", "New", "Venues", null, new { @class = "btn btn-primary btn-sm" })
 </p>
 @if (!Model.Any())
 {
@@ -16,7 +16,7 @@
 }
 else
 {
-    <table class="table table-hover table-responsive-lg table-striped table-dark">
+    <table class="table table-hover table-responsive-lg table-striped table-dark" id="myTable">
         <thead>
             <tr>
                 <th scope="col">Venue</th>
@@ -25,23 +25,38 @@ else
                 <th scope="col">City</th>
                 <th scope="col">State</th>
                 <th scope="col">Zip</th>
+                <th scope="col">Edit/Delete</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var venue in Model)
-            {
-                var address = venue.Address;
-                <tr class="table-active">
-                    <td>
-                        @Html.ActionLink(venue.Name, "Edit", "Venues", new { id = venue.Id }, null)
-                    </td>
-                    <td>@venue.Capacity</td>
-                    <td>@address.StreetAddress</td>
-                    <td>@address.City</td>
-                    <td>@address.State</td>
-                    <td>@address.ZipCode</td>
-                </tr>
-            }
+        @foreach (var venue in Model)
+        {
+            var address = venue.Address;
+            <tr class="table-active">
+                <td>
+                    @Html.ActionLink(venue.Name, "Edit", "Venues", new { id = venue.Id }, null)
+                </td>
+                <td>@venue.Capacity</td>
+                <td>@address.StreetAddress</td>
+                <td>@address.City</td>
+                <td>@address.State</td>
+                <td>@address.ZipCode</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Venues", new { id = venue.Id }, new { @class = "btn btn-xs btn-secondary", @style = "display: inline;" })
+                    @Html.ActionLink("Delete", "Edit", "Venues", new { id = venue.Id }, new { @class = "btn btn-xs btn-dark", @style = "display: inline;" })
+                </td>
+            </tr>
+        }
         </tbody>
     </table>
+}
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
 }

@@ -9,65 +9,73 @@
 <h1 class="custom-control-inline">Denver Area Performances</h1>
 
 <p class="custom-control-inline float-right">
-    @Html.ActionLink("New Performance", "New", "Performances", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("New Performance", "New", "Performances", null, new { @class = "btn btn-primary btn-sm" })
 </p>
-<table class="table table-hover table-responsive-lg table-striped table-dark" width="1000">
+<table class="table table-hover table-responsive-lg table-striped table-dark" id = "myTable">
     <thead>
-    <tr>
-        <th scope="col">Date</th>
-        <th scope="col">Time</th>
-        <th scope="col">Performer</th>
-        <th scope="col">Genre / Topics</th>
-        <th scope="col">Venue</th>
-        <th scope="col">Location</th>
-        <th scope="col">Price</th>
-        <th scope="col">Edit/<br/>Delete</th>
-    </tr>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+            <th scope="col">Performer</th>
+            <th scope="col">Genre/Topics</th>
+            <th scope="col">Venue</th>
+            <th scope="col">Location</th>
+            <th scope="col">Price</th>
+            <th scope="col">Edit/Delete</th>
+        </tr>
     </thead>
     <tbody>
-    @foreach (var performance in Model)
-    {
-        var performer = performance.Performer;
-        <tr class="table-active">
-            <td>
-                <div class="date">
-                    <a href="#" class="date-btn">
-                        <span class="binds"></span>
-                        <span class="month">
-                            @Convert.ToDateTime(performance.EventDateTime).ToString("MMM")
-                        </span>
-                        <h2 class="day">@Convert.ToDateTime(performance.EventDateTime).ToString("dd")</h2>
-                    </a>
-                </div>
-            </td>
-            <td>@performance.EventDateTime.ToShortTimeString()</td>
-            <td>
-                @* this will eventually filter all performances for performer *@
-                @Html.ActionLink(performer.Name, "Edit", "Performances", new {id = performance.Id}, null)
-            </td>
-            <td>
-                @if (performer.GenreId != null)
-                {
-                    @performer.Genre.Name
-                }
-                @if (performer.TopicId != null)
-                {
-                    @performer.Topic.Name
-                }
-            </td>
-            <td>@performance.Venue.Name</td>
-            <td>
-                @performance.Venue.Address.City,
-                @performance.Venue.Address.State
-            </td>
-            <td>$@performance.Price</td>
-            @* will implement using JS in the future *@
-            <td>
-                @Html.ActionLink("Edit", "Edit", "Performances", new {id = performer.Id}, new { @class = "btn btn-xs btn-secondary" })
-                <br/>
-                <button class="btn btn-xs btn-dark" style="margin-top: 4px;">Delete</button>
-            </td>
-        </tr>
-    }
+        @foreach (var performance in Model)
+        {
+            var performer = performance.Performer;
+            <tr class="table-active">
+                <td>
+                    <div class="date">
+                        <a href="#" class="date-btn">
+                            <span class="binds"></span>
+                            <span class="month">
+                                @Convert.ToDateTime(performance.EventDateTime).ToString("MMM")
+                            </span>
+                            <h2 class="day">@Convert.ToDateTime(performance.EventDateTime).ToString("dd")</h2>
+                        </a>
+                    </div>
+                </td>
+                <td>@performance.EventDateTime.ToShortTimeString()</td>
+                <td>
+                    @* this will eventually filter all performances for performer *@
+                    @Html.ActionLink(performer.Name, "Edit", "Performances", new { id = performance.Id }, null)
+                </td>
+                <td>
+                    @if (performer.GenreId != null)
+                    {
+                        @performer.Genre.Name
+                    }
+                    @if (performer.TopicId != null)
+                    {
+                        @performer.Topic.Name
+                    }
+                </td>
+                <td>@performance.Venue.Name</td>
+                <td>
+                    @performance.Venue.Address.City,
+                    @performance.Venue.Address.State
+                </td>
+                <td>$@performance.Price</td>
+                @* will implement using JS in the future *@
+                <td>
+                    @Html.ActionLink("Edit", "Edit", "Performances", new { id = performer.Id }, new { @class = "btn btn-xs btn-secondary", @style = "display: inline;" })
+                    @Html.ActionLink("Delete", "Edit", "Performances", new { id = performer.Id }, new { @class = "btn btn-xs btn-dark", @style = "display: inline;" })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@section scripts
+{
+    <script>
+        $(document).ready( function () {
+            $('#myTable').DataTable();
+        } );
+    </script>
+}
