@@ -280,6 +280,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\AfterNow.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\Performance.cs" />
     <Compile Include="Models\IdentityModels.cs" />

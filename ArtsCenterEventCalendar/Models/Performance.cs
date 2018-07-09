@@ -14,7 +14,8 @@ namespace ArtsCenterEventCalendar.Models
         public string Description { get; set; }
 
         public bool IsActive { get; set; }
-        
+
+        [AfterNow]
         [Display(Name = "Event Date and Time")]
         public DateTime EventDateTime { get; set; }
 
