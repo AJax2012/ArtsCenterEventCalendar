@@ -27,20 +27,20 @@
     </div>
 
     // Genre
-    <div class="form-group"> 
-        @Html.LabelFor(m => m.Performer.GenreId) 
-        @Html.DropDownListFor(m => m.Performer.GenreId, new SelectList(Model.Genres, "Id", "Name"), "Select Genre", new { @class = "form-control col-md-5", @value = 0 }) 
+    <div class="form-group">
+        @Html.LabelFor(m => m.Performer.GenreId)
+        @Html.DropDownListFor(m => m.Performer.GenreId, new SelectList(Model.Genres, "Id", "Name"), "Select Genre", new { @class = "form-control col-md-5", @value = 0 })
         @Html.ValidationMessageFor(m => m.Performer.GenreId)
-    </div> 
+    </div>
 
     // Topic
-    <div class="form-group"> 
-        @Html.LabelFor(m => m.Performer.TopicId) 
-        @Html.DropDownListFor(m => m.Performer.TopicId, new SelectList(Model.Topics, "Id", "Name"), "Select Topic", new { @class = "form-control col-md-5", @value = 0 }) 
-        @Html.ValidationMessageFor(m => m.Performer.TopicId) 
-    </div> 
+    <div class="form-group">
+        @Html.LabelFor(m => m.Performer.TopicId)
+        @Html.DropDownListFor(m => m.Performer.TopicId, new SelectList(Model.Topics, "Id", "Name"), "Select Topic", new { @class = "form-control col-md-5", @value = 0 })
+        @Html.ValidationMessageFor(m => m.Performer.TopicId)
+    </div>
 
-    
+
 
     // Tour Name
     <div class="form-group">
@@ -60,4 +60,9 @@
 
     <button type="submit" class="btn btn-primary">Submit</button>
     @Html.ActionLink("Cancel", "Index", "Performers", null, new { @class = "btn btn-dark" })
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
 }
