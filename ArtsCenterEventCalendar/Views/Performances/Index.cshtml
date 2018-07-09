@@ -1,5 +1,4 @@
 ﻿@using ArtsCenterEventCalendar.Models
-@using Microsoft.Ajax.Utilities
 @model IEnumerable<Performance>
 @{
     ViewBag.Title = "Index";
@@ -27,46 +26,62 @@
     <tbody>
         @foreach (var performance in Model)
         {
-            var performer = performance.Performer;
-            <tr class="table-active">
-                <td>
-                    <div class="date">
-                        <a href="#" class="date-btn">
-                            <span class="binds"></span>
-                            <span class="month">
-                                @Convert.ToDateTime(performance.EventDateTime).ToString("MMM")
-                            </span>
-                            <h2 class="day">@Convert.ToDateTime(performance.EventDateTime).ToString("dd")</h2>
-                        </a>
-                    </div>
-                </td>
-                <td>@performance.EventDateTime.ToShortTimeString()</td>
-                <td>
-                    @* this will eventually filter all performances for performer *@
-                    @Html.ActionLink(performer.Name, "Edit", "Performances", new { id = performance.Id }, null)
-                </td>
-                <td>
-                    @if (performer.GenreId != null)
-                    {
-                        @performer.Genre.Name
-                    }
-                    @if (performer.TopicId != null)
-                    {
-                        @performer.Topic.Name
-                    }
-                </td>
-                <td>@performance.Venue.Name</td>
-                <td>
-                    @performance.Venue.Address.City,
-                    @performance.Venue.Address.State
-                </td>
-                <td>$@performance.Price</td>
-                @* will implement using JS in the future *@
-                <td>
-                    @Html.ActionLink("Edit", "Edit", "Performances", new { id = performer.Id }, new { @class = "btn btn-xs btn-secondary", @style = "display: inline;" })
-                    @Html.ActionLink("Delete", "Edit", "Performances", new { id = performer.Id }, new { @class = "btn btn-xs btn-dark", @style = "display: inline;" })
-                </td>
-            </tr>
+            if (performance.IsActive == true)
+            {
+                var performer = performance.Performer;
+                <tr class="table-active">
+                    <td>
+                        <div class="date">
+                            <a href="#" class="date-btn">
+                                <span class="binds"></span>
+                                <span class="month">
+                                    @Convert.ToDateTime(performance.EventDateTime).ToString("MMM")
+                                </span>
+                                <h2 class="day">@Convert.ToDateTime(performance.EventDateTime).ToString("dd")</h2>
+                            </a>
+                        </div>
+                    </td>
+                    <td>@performance.EventDateTime.ToShortTimeString()</td>
+                    <td>
+
+                        @performer.Name
+                    </td>
+                    <td>
+                        @if (performer.GenreId != null)
+                        {
+                            @performer.Genre.Name
+                        }
+                        @if (performer.TopicId != null)
+                        {
+                            @performer.Topic.Name
+                        }
+                    </td>
+                    <td>@performance.Venue.Name</td>
+                    <td>
+                        @performance.Venue.Address.City,
+                        @performance.Venue.Address.State
+                    </td>
+                    <td>$@performance.Price</td>
+                    @* will implement using JS in the future *@
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Performances", new {id = performance.Id},
+                            new {@class = "btn btn-xs btn-secondary", @style = "display: inline;"})
+
+                        @using (Html.BeginForm(null, null, FormMethod.Post, new {@class = "__AjaxAntiForgeryForm"}))
+                        {
+                            @Html.ActionLink("Delete", "Delete", "Performances", null,
+                                new
+                                {
+                                    data_performanceId = performance.Id, @class = "btn btn-xs btn-dark js-delete",
+                                    @style = "display: inline;", @value = "Delete"
+                                })
+                            @Html.AntiForgeryToken()
+                        }
+
+
+                    </td>
+                </tr>
+            }
         }
     </tbody>
 </table>
@@ -74,8 +89,32 @@
 @section scripts
 {
     <script>
-        $(document).ready( function () {
-            $('#myTable').DataTable();
-        } );
+        $(document).ready(function() {
+            var table = $("#myTable");
+            table.DataTable();
+
+            table.on("click",
+                ".js-delete",
+                function() {
+                    event.preventDefault();
+                    var button = $(this);
+                    var form = $(".__AjaxAntiForgeryForm");
+                    var token = $("input[name='__RequestVerificationToken']", form).val();
+
+                    bootbox.confirm("Are you sure you want to delete this customer?",
+                        function(result) {
+                            if (result) {
+                                $.ajax({
+                                    url: "/Performances/Delete/" + button.data("performanceid"),
+                                    data: { __RequestVerificationToken: token },
+                                    method: "DELETE",
+                                    success: function() {
+                                        button.closest("tr").remove().draw();
+                                    }
+                                });
+                            };
+                        });
+                });
+        });
     </script>
 }

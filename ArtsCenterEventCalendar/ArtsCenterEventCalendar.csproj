@@ -237,53 +237,45 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807012228060_InitialMigration.cs" />
-    <Compile Include="Migrations\201807012228060_InitialMigration.Designer.cs">
-      <DependentUpon>201807012228060_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201807090518586_InitialMigration.cs" />
+    <Compile Include="Migrations\201807090518586_InitialMigration.Designer.cs">
+      <DependentUpon>201807090518586_InitialMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807020406291_PopulateAddressesTable.cs" />
-    <Compile Include="Migrations\201807020406291_PopulateAddressesTable.Designer.cs">
-      <DependentUpon>201807020406291_PopulateAddressesTable.cs</DependentUpon>
+    <Compile Include="Migrations\201807090522074_PopulateAddressesTable.cs" />
+    <Compile Include="Migrations\201807090522074_PopulateAddressesTable.Designer.cs">
+      <DependentUpon>201807090522074_PopulateAddressesTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807020407298_PopulateVenuesTable.cs" />
-    <Compile Include="Migrations\201807020407298_PopulateVenuesTable.Designer.cs">
-      <DependentUpon>201807020407298_PopulateVenuesTable.cs</DependentUpon>
+    <Compile Include="Migrations\201807090523447_PopulateVenuesTable.cs" />
+    <Compile Include="Migrations\201807090523447_PopulateVenuesTable.Designer.cs">
+      <DependentUpon>201807090523447_PopulateVenuesTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807020408161_PopulatePerformerTypesTable.cs" />
-    <Compile Include="Migrations\201807020408161_PopulatePerformerTypesTable.Designer.cs">
-      <DependentUpon>201807020408161_PopulatePerformerTypesTable.cs</DependentUpon>
+    <Compile Include="Migrations\201807090525093_PopulatePerformerTypesTable.cs" />
+    <Compile Include="Migrations\201807090525093_PopulatePerformerTypesTable.Designer.cs">
+      <DependentUpon>201807090525093_PopulatePerformerTypesTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807020410421_PopulateGenresTable.cs" />
-    <Compile Include="Migrations\201807020410421_PopulateGenresTable.Designer.cs">
-      <DependentUpon>201807020410421_PopulateGenresTable.cs</DependentUpon>
+    <Compile Include="Migrations\201807090531140_GenreLongerName.cs" />
+    <Compile Include="Migrations\201807090531140_GenreLongerName.Designer.cs">
+      <DependentUpon>201807090531140_GenreLongerName.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807020411373_PopulatePerformersTable.cs" />
-    <Compile Include="Migrations\201807020411373_PopulatePerformersTable.Designer.cs">
-      <DependentUpon>201807020411373_PopulatePerformersTable.cs</DependentUpon>
+    <Compile Include="Migrations\201807090531431_PopulateGenresTable.cs" />
+    <Compile Include="Migrations\201807090531431_PopulateGenresTable.Designer.cs">
+      <DependentUpon>201807090531431_PopulateGenresTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807020412213_PopulatePerformancesTable.cs" />
-    <Compile Include="Migrations\201807020412213_PopulatePerformancesTable.Designer.cs">
-      <DependentUpon>201807020412213_PopulatePerformancesTable.cs</DependentUpon>
+    <Compile Include="Migrations\201807090532342_PopulatePerformersTable.cs" />
+    <Compile Include="Migrations\201807090532342_PopulatePerformersTable.Designer.cs">
+      <DependentUpon>201807090532342_PopulatePerformersTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807031740487_RemoveInheritenceFromPerformer.cs" />
-    <Compile Include="Migrations\201807031740487_RemoveInheritenceFromPerformer.Designer.cs">
-      <DependentUpon>201807031740487_RemoveInheritenceFromPerformer.cs</DependentUpon>
+    <Compile Include="Migrations\201807090534305_PopulatePerformancesTable.cs" />
+    <Compile Include="Migrations\201807090534305_PopulatePerformancesTable.Designer.cs">
+      <DependentUpon>201807090534305_PopulatePerformancesTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807031845327_ReaddGenreAddTopic.cs" />
-    <Compile Include="Migrations\201807031845327_ReaddGenreAddTopic.Designer.cs">
-      <DependentUpon>201807031845327_ReaddGenreAddTopic.cs</DependentUpon>
+    <Compile Include="Migrations\201807090536422_PopulateTopicsTable.cs" />
+    <Compile Include="Migrations\201807090536422_PopulateTopicsTable.Designer.cs">
+      <DependentUpon>201807090536422_PopulateTopicsTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807031859108_PopulateGenres.cs" />
-    <Compile Include="Migrations\201807031859108_PopulateGenres.Designer.cs">
-      <DependentUpon>201807031859108_PopulateGenres.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807031900434_PopulateTopics.cs" />
-    <Compile Include="Migrations\201807031900434_PopulateTopics.Designer.cs">
-      <DependentUpon>201807031900434_PopulateTopics.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807040339293_ChangeNoOfSeatsToCapacity.cs" />
-    <Compile Include="Migrations\201807040339293_ChangeNoOfSeatsToCapacity.Designer.cs">
-      <DependentUpon>201807040339293_ChangeNoOfSeatsToCapacity.cs</DependentUpon>
+    <Compile Include="Migrations\201807090537296_TopicLongerName.cs" />
+    <Compile Include="Migrations\201807090537296_TopicLongerName.Designer.cs">
+      <DependentUpon>201807090537296_TopicLongerName.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -668,41 +660,35 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807012228060_InitialMigration.resx">
-      <DependentUpon>201807012228060_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807090518586_InitialMigration.resx">
+      <DependentUpon>201807090518586_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807020406291_PopulateAddressesTable.resx">
-      <DependentUpon>201807020406291_PopulateAddressesTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807090522074_PopulateAddressesTable.resx">
+      <DependentUpon>201807090522074_PopulateAddressesTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807020407298_PopulateVenuesTable.resx">
-      <DependentUpon>201807020407298_PopulateVenuesTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807090523447_PopulateVenuesTable.resx">
+      <DependentUpon>201807090523447_PopulateVenuesTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807020408161_PopulatePerformerTypesTable.resx">
-      <DependentUpon>201807020408161_PopulatePerformerTypesTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807090525093_PopulatePerformerTypesTable.resx">
+      <DependentUpon>201807090525093_PopulatePerformerTypesTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807020410421_PopulateGenresTable.resx">
-      <DependentUpon>201807020410421_PopulateGenresTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807090531140_GenreLongerName.resx">
+      <DependentUpon>201807090531140_GenreLongerName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807020411373_PopulatePerformersTable.resx">
-      <DependentUpon>201807020411373_PopulatePerformersTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807090531431_PopulateGenresTable.resx">
+      <DependentUpon>201807090531431_PopulateGenresTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807020412213_PopulatePerformancesTable.resx">
-      <DependentUpon>201807020412213_PopulatePerformancesTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807090532342_PopulatePerformersTable.resx">
+      <DependentUpon>201807090532342_PopulatePerformersTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807031740487_RemoveInheritenceFromPerformer.resx">
-      <DependentUpon>201807031740487_RemoveInheritenceFromPerformer.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807090534305_PopulatePerformancesTable.resx">
+      <DependentUpon>201807090534305_PopulatePerformancesTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807031845327_ReaddGenreAddTopic.resx">
-      <DependentUpon>201807031845327_ReaddGenreAddTopic.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807090536422_PopulateTopicsTable.resx">
+      <DependentUpon>201807090536422_PopulateTopicsTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807031859108_PopulateGenres.resx">
-      <DependentUpon>201807031859108_PopulateGenres.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807031900434_PopulateTopics.resx">
-      <DependentUpon>201807031900434_PopulateTopics.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807040339293_ChangeNoOfSeatsToCapacity.resx">
-      <DependentUpon>201807040339293_ChangeNoOfSeatsToCapacity.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807090537296_TopicLongerName.resx">
+      <DependentUpon>201807090537296_TopicLongerName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

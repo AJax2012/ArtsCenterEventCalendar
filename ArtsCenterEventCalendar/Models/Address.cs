@@ -14,5 +14,9 @@ namespace ArtsCenterEventCalendar.Models
         public string State { get; set; }
 
         public string ZipCode { get; set; }
+
+        public bool IsActive { get; set; }
+
+        public Venue Venue { get; set; }
     }
 }

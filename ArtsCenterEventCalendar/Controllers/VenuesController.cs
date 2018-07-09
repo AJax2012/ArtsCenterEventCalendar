@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using ArtsCenterEventCalendar.Models;
 using ArtsCenterEventCalendar.ViewModels;
-using AutoMapper;
+using Microsoft.Ajax.Utilities;
 
 namespace ArtsCenterEventCalendar.Controllers
 {
@@ -100,6 +98,40 @@ namespace ArtsCenterEventCalendar.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Venues");
+        }
+
+        [HttpDelete]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            var venue = _context.Venues.Find(id);
+
+            if (venue == null)
+                return HttpNotFound();
+
+            var address = _context.Addresses.Find(venue.AddressId);;
+
+            venue.IsActive = false;
+
+            if (address != null)
+                address.IsActive = false;
+
+            if (Exists(venue.Performances))
+            {
+                foreach (var performance in venue.Performances)
+                {
+                    performance.IsActive = false;
+                }
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Venues");
+        }
+
+        public static bool Exists<T>(IEnumerable<T> data)
+        {
+            return data != null && data.Any();
         }
     }
 }

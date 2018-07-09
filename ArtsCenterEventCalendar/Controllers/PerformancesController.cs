@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
+using System.Net;
 using System.Web.Mvc;
-using System.Web.UI.WebControls.Expressions;
 using ArtsCenterEventCalendar.Models;
 using ArtsCenterEventCalendar.ViewModels;
-using AutoMapper;
-using Microsoft.Ajax.Utilities;
 
 namespace ArtsCenterEventCalendar.Controllers
 {
@@ -110,6 +106,21 @@ namespace ArtsCenterEventCalendar.Controllers
                 performanceInDb.Description = performance.Description;
             }
             
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Performances");
+        }
+
+        [HttpDelete]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            var performance = _context.Performances.Find(id);
+
+            if (performance == null)
+                return HttpNotFound();
+
+            performance.IsActive = false;
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Performances");

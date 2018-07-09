@@ -8,12 +8,19 @@ namespace ArtsCenterEventCalendar.EntityConfigurations
     {
         public PerformerConfiguration()
         {
+            HasIndex(p => p.Name)
+                .IsUnique();
+
             Property(p => p.Id)
                 .HasDatabaseGeneratedOption(
                     DatabaseGeneratedOption.Identity);
 
-            Property(p => p.Name)
+            Property(p => p.IsActive)
                 .IsRequired();
+
+            Property(p => p.Name)
+                .IsRequired()
+                .HasMaxLength(100);
 
             HasRequired(p => p.PerformerType)
                 .WithMany(p => p.Performers)

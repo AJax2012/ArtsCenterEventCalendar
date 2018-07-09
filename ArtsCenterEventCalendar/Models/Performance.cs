@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace ArtsCenterEventCalendar.Models
 {
@@ -16,6 +13,8 @@ namespace ArtsCenterEventCalendar.Models
 
         public string Description { get; set; }
 
+        public bool IsActive { get; set; }
+        
         [Display(Name = "Event Date and Time")]
         public DateTime EventDateTime { get; set; }
 

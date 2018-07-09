@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Web;
 using ArtsCenterEventCalendar.Models;
 
 namespace ArtsCenterEventCalendar.EntityConfigurations
@@ -17,7 +13,11 @@ namespace ArtsCenterEventCalendar.EntityConfigurations
                 .HasMaxLength(20);
 
             Property(a => a.Id)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+                .HasDatabaseGeneratedOption(
+                    DatabaseGeneratedOption.Identity);
+
+            Property(a => a.IsActive)
+                .IsRequired();
 
             Property(a => a.State)
                 .IsRequired()
@@ -30,6 +30,10 @@ namespace ArtsCenterEventCalendar.EntityConfigurations
             Property(a => a.ZipCode)
                 .IsRequired()
                 .HasMaxLength(5);
+
+            HasOptional(a => a.Venue)
+                .WithRequired(v => v.Address)
+                .WillCascadeOnDelete(false);
            }
     }
 }

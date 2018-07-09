@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using ArtsCenterEventCalendar.EntityConfigurations;
@@ -44,9 +43,12 @@ namespace ArtsCenterEventCalendar.Models
         {
             // ADD CONFIGURATIONS
             modelBuilder.Configurations.Add(new AddressConfiguration());
+            modelBuilder.Configurations.Add(new GenreConfiguration());
             modelBuilder.Configurations.Add(new PerformanceConfiguration());
             modelBuilder.Configurations.Add(new PerformerConfiguration());
             modelBuilder.Configurations.Add(new PerformerTypeConfiguration());
+            modelBuilder.Configurations.Add(new TopicConfiguration());
+            modelBuilder.Configurations.Add(new VenueConfiguration());
             
             base.OnModelCreating(modelBuilder);
         }

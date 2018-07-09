@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using ArtsCenterEventCalendar.Models;
 using ArtsCenterEventCalendar.ViewModels;
-using AutoMapper;
 
 namespace ArtsCenterEventCalendar.Controllers
 {
@@ -38,12 +34,14 @@ namespace ArtsCenterEventCalendar.Controllers
 
         public ActionResult New()
         {
+            var performerTypes = _context.PerformerTypes;
             var genres = _context.Genres;
             var topics = _context.Topics;
 
             var viewModel = new PerformerFormViewModel
             {
                 Performer = new Performer(),
+                PerformerTypes = performerTypes,
                 Genres = genres,
                 Topics = topics
             };
@@ -108,6 +106,19 @@ namespace ArtsCenterEventCalendar.Controllers
             return RedirectToAction("Index", "Performers");
         }
 
-        
+        [HttpDelete]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            var performer = _context.Performers.Find(id);
+
+            if (performer == null)
+                return HttpNotFound();
+
+            performer.IsActive = false;
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Performers");
+        }
     }
 }

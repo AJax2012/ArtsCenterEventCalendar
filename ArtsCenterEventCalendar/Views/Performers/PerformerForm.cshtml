@@ -22,7 +22,7 @@
     // Performer Type
     <div class="form-group">
         @Html.LabelFor(m => m.Performer.PerformerTypeId)
-        @Html.DropDownListFor(m => m.Performer.PerformerTypeId, new SelectList(Model.PerformerTypes, "Id", "Name"), "Select Performer Type", new { @class = "form-control col-md-5" })
+        @Html.DropDownListFor(m => m.Performer.PerformerTypeId, new SelectList(Model.PerformerTypes, "Id", "Name"), "Select Performer Type", new { @class = "form-control col-md-5", @value = 0 })
         @Html.ValidationMessageFor(m => m.Performer.PerformerTypeId)
     </div>
 

@@ -11,6 +11,8 @@ namespace ArtsCenterEventCalendar.Models
 
         public int Capacity { get; set; }
 
+        public bool IsActive { get; set; }
+        
         public Address Address { get; set; }
 
         [Display(Name = "Address")]

@@ -29,28 +29,35 @@ else
         <tbody>
             @foreach (var performer in Model)
             {
-                <tr class="table-active">
-                    <td>
-                        @Html.ActionLink(performer.Name, "Edit", "Performers", new { id = performer.Id }, null)
-                    </td>
-                    <td>@performer.PerformerType.Name</td>
-                    <td>
-                        @if (performer.Genre != null)
-                        {
-                            @performer.Genre.Name
-                        }
-                        @if (performer.Topic != null)
-                        {
-                            @performer.Topic.Name
-                        }
-                    </td>
-                    <td>@performer.Description</td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", "Performers", new { id = performer.Id }, new { @class = "btn btn-xs btn-secondary", @style = "display: inline;" })
-                        @Html.ActionLink("Delete", "Edit", "Performers", new { id = performer.Id }, new { @class = "btn btn-xs btn-dark", @style = "display: inline;" })
-                    </td>
-                </tr>
-
+                if (performer.IsActive == true)
+                {
+                    <tr class="table-active">
+                        <td>@performer.Name</td>
+                        <td>@performer.PerformerType.Name</td>
+                        <td>
+                            @if (performer.Genre != null)
+                            {
+                                @performer.Genre.Name
+                            }
+                            @if (performer.Topic != null)
+                            {
+                                @performer.Topic.Name
+                            }
+                        </td>
+                        <td>@performer.Description</td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", "Performers", new { id = performer.Id }, new { @class = "btn btn-xs btn-secondary", @style = "display: inline;" })
+                            
+                            @using (Html.BeginForm(null, null, FormMethod.Post, new {@class = "__AjaxAntiForgeryForm"}))
+                            {
+                                @Html.ActionLink("Delete", "Delete", "Performers", null, 
+                                    new { data_performerId = performer.Id, @class = "btn btn-xs btn-dark js-delete",
+                                        @style = "display: inline;", @value = "Delete" })
+                                @Html.AntiForgeryToken()
+                            }
+                        </td>
+                    </tr>
+                }
             }
         </tbody>
     </table>
@@ -59,8 +66,32 @@ else
 @section scripts
 {
     <script>
-        $(document).ready( function () {
-            $('#myTable').DataTable();
-        } );
+        $(document).ready(function () {
+            var table = $("#myTable");
+            table.DataTable();
+
+            table.on("click",
+                ".js-delete",
+                function () {
+                    event.preventDefault();
+                    var button = $(this);
+                    var form = $(".__AjaxAntiForgeryForm");
+                    var token = $("input[name='__RequestVerificationToken']", form).val();
+
+                    bootbox.confirm("Are you sure you want to delete this customer?",
+                        function (result) {
+                            if (result) {
+                                $.ajax({
+                                    url: "/Performers/Delete/" + button.data("performerid"),
+                                    data: { __RequestVerificationToken: token },
+                                    method: "DELETE",
+                                    success: function () {
+                                        button.closest("tr").remove().draw();
+                                    }
+                                });
+                            };
+                        });
+                });
+        });
     </script>
 }
